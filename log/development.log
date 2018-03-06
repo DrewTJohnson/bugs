@@ -1,0 +1,1578 @@
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (60.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (32.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateBugs (20180227160339)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "bugs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "author" varchar, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180227160339"]]
+  [1m[35m (32.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (3.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-02-27 16:03:49.399973"], ["updated_at", "2018-02-27 16:03:49.399973"]]
+  [1m[35m (34.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 11:03:53 -0500
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 1724ms (Views: 1691.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs/new" for 127.0.0.1 at 2018-02-27 11:04:22 -0500
+Processing by BugsController#new as HTML
+  Rendering bugs/new.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (31.1ms)
+  Rendered bugs/new.html.erb within layouts/application (47.6ms)
+Completed 200 OK in 190ms (Views: 162.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/bugs" for 127.0.0.1 at 2018-02-27 11:04:33 -0500
+Processing by BugsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3sUaO8EmrWCnEJ4lA+VNpeuoF/rP9PQSDMCrowZ/bXXy6hXJC94qMYB+eqFiCEZJpw57m1GZdIRvdRt3194Gwg==", "bug"=>{"title"=>"test1", "author"=>"test1", "body"=>"test1"}, "commit"=>"Create Bug"}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "bugs" ("title", "author", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "test1"], ["author", "test1"], ["body", "test1"], ["created_at", "2018-02-27 16:04:33.199180"], ["updated_at", "2018-02-27 16:04:33.199180"]]
+  [1m[35m (37.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/bugs/1
+Completed 302 Found in 48ms (ActiveRecord: 38.8ms)
+
+
+Started GET "/bugs/1" for 127.0.0.1 at 2018-02-27 11:04:33 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 144ms (Views: 112.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 11:04:34 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 121ms (Views: 103.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/new" for 127.0.0.1 at 2018-02-27 11:04:36 -0500
+Processing by BugsController#new as HTML
+  Rendering bugs/new.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (2.0ms)
+  Rendered bugs/new.html.erb within layouts/application (18.0ms)
+Completed 200 OK in 122ms (Views: 105.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/bugs" for 127.0.0.1 at 2018-02-27 11:04:44 -0500
+Processing by BugsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"DM78p0B1gpjASa9FOV3yBn/9TPVtPukWdYm3Tta1fK8g4fNVio0FyecnS8FYsPnqM1sglPNTaYAWPAeaBxQXGA==", "bug"=>{"title"=>"test2", "author"=>"test2", "body"=>"test2"}, "commit"=>"Create Bug"}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (3.0ms)[0m  [1m[32mINSERT INTO "bugs" ("title", "author", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "test2"], ["author", "test2"], ["body", "test2"], ["created_at", "2018-02-27 16:04:45.030213"], ["updated_at", "2018-02-27 16:04:45.030213"]]
+  [1m[35m (35.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/bugs/2
+Completed 302 Found in 45ms (ActiveRecord: 38.1ms)
+
+
+Started GET "/bugs/2" for 127.0.0.1 at 2018-02-27 11:04:45 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 112ms (Views: 93.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 11:04:46 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 112ms (Views: 94.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/new" for 127.0.0.1 at 2018-02-27 11:04:48 -0500
+Processing by BugsController#new as HTML
+  Rendering bugs/new.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (3.0ms)
+  Rendered bugs/new.html.erb within layouts/application (18.0ms)
+Completed 200 OK in 123ms (Views: 105.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/bugs" for 127.0.0.1 at 2018-02-27 11:04:51 -0500
+Processing by BugsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vbHkNLXKlUDzihKn480Pcl0EONmojS6/rj4dI46cLqaRnuvGfzISEdTk9iOCIASeEaJUuDbgrinNi633Xz1FEQ==", "bug"=>{"title"=>"test3", "author"=>"", "body"=>""}, "commit"=>"Create Bug"}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (3.0ms)[0m  [1m[32mINSERT INTO "bugs" ("title", "author", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "test3"], ["author", ""], ["body", ""], ["created_at", "2018-02-27 16:04:51.459679"], ["updated_at", "2018-02-27 16:04:51.459679"]]
+  [1m[35m (35.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/bugs/3
+Completed 302 Found in 46ms (ActiveRecord: 38.1ms)
+
+
+Started GET "/bugs/3" for 127.0.0.1 at 2018-02-27 11:04:51 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 117ms (Views: 98.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/3/edit" for 127.0.0.1 at 2018-02-27 11:04:54 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (3.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (18.0ms)
+Completed 200 OK in 121ms (Views: 103.3ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-02-27 11:05:01 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tBgsDcU/NDr8rcjxKvssQiQVp/kbPvVBopHvXf/kHYAr4QfrtHhQ6TzSCBPbOEcHPV+qHjwb2pHv+j1BBpN9sg==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"test3"}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (11.1ms)[0m  [1m[33mUPDATE "bugs" SET "author" = ?, "body" = ?, "updated_at" = ? WHERE "bugs"."id" = ?[0m  [["author", "test3"], ["body", "test3"], ["updated_at", "2018-02-27 16:05:01.999151"], ["id", 3]]
+  [1m[35m (41.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/bugs/3
+Completed 302 Found in 61ms (ActiveRecord: 53.2ms)
+
+
+Started GET "/bugs/3" for 127.0.0.1 at 2018-02-27 11:05:02 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 106ms (Views: 88.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 11:05:03 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 104ms (Views: 88.9ms | ActiveRecord: 0.0ms)
+
+
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "bugs" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Bug From Console"], ["created_at", "2018-02-27 16:06:07.906531"], ["updated_at", "2018-02-27 16:06:07.906531"]]
+  [1m[35m (35.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (3.0ms)[0m  [1m[32mINSERT INTO "bugs" ("title", "author", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Another Bug"], ["author", "Student"], ["body", "Does this work?"], ["created_at", "2018-02-27 16:07:08.065382"], ["updated_at", "2018-02-27 16:07:08.065382"]]
+  [1m[35m (34.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."title" = ? LIMIT ?[0m  [["title", "Another Bug"], ["LIMIT", 11]]
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."title" = ? ORDER BY "bugs"."id" ASC LIMIT ?[0m  [["title", "Another Bug"], ["LIMIT", 1]]
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."title" = ? LIMIT ?[0m  [["title", "Another Bug"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (161.1ms)[0m  [1m[33mUPDATE "bugs" SET "title" = ?, "body" = ?, "updated_at" = ? WHERE "bugs"."id" = ?[0m  [["title", "Updated Bug"], ["body", "It works!"], ["updated_at", "2018-02-27 16:08:34.711702"], ["id", 1]]
+  [1m[35m (49.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (7.1ms)[0m  [1m[31mDELETE FROM "bugs" WHERE "bugs"."id" = ?[0m  [["id", 1]]
+  [1m[35m (37.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (2.0ms)[0m  [1m[32mINSERT INTO "bugs" ("title", "author", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Bug1"], ["author", "Author"], ["body", "Body"], ["created_at", "2018-02-27 16:10:13.982826"], ["updated_at", "2018-02-27 16:10:13.982826"]]
+  [1m[35m (36.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (3.0ms)[0m  [1m[32mINSERT INTO "bugs" ("title", "author", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Bug2"], ["author", "Author"], ["body", "Body"], ["created_at", "2018-02-27 16:10:14.024981"], ["updated_at", "2018-02-27 16:10:14.024981"]]
+  [1m[35m (35.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (3.0ms)[0m  [1m[32mINSERT INTO "bugs" ("title", "author", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Bug3"], ["author", "Author"], ["body", "Body"], ["created_at", "2018-02-27 16:10:14.066013"], ["updated_at", "2018-02-27 16:10:14.066013"]]
+  [1m[35m (34.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."author" = ? LIMIT ?[0m  [["author", "Author"], ["LIMIT", 11]]
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE ("bugs"."author" != ?) LIMIT ?[0m  [["author", "Author"], ["LIMIT", 11]]
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."author" = ? ORDER BY "bugs"."id" ASC LIMIT ?[0m  [["author", "Author"], ["LIMIT", 1]]
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE (created_at < '2018-02-27 15:41:45.861055') LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mBug Load (0.5ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" ORDER BY "bugs"."created_at" DESC LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddPriorityToBugs (20180227161236)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (7.0ms)[0m  [1m[35mALTER TABLE "bugs" ADD "priority" integer[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180227161236"]]
+  [1m[35m (31.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" ORDER BY "bugs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (160.4ms)[0m  [1m[33mUPDATE "bugs" SET "updated_at" = ?, "priority" = ? WHERE "bugs"."id" = ?[0m  [["updated_at", "2018-02-27 16:13:23.710401"], ["priority", 10], ["id", 2]]
+  [1m[35m (45.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateComments (20180227162821)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "bug_id" integer, "author" varchar, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_80b9288e3f"
+FOREIGN KEY ("bug_id")
+  REFERENCES "bugs" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE  INDEX "index_comments_on_bug_id" ON "comments" ("bug_id")[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180227162821"]]
+  [1m[35m (33.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_bug_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_bug_id' AND type='index'
+[0m
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" ORDER BY "bugs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateComments (20180227162821)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mDROP TABLE "comments"[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20180227162821"]]
+  [1m[35m (36.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateComments (20180227162821)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "bug_id" integer, "author" varchar, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_80b9288e3f"
+FOREIGN KEY ("bug_id")
+  REFERENCES "bugs" ("id")
+)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE  INDEX "index_comments_on_bug_id" ON "comments" ("bug_id")[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180227162821"]]
+  [1m[35m (32.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_bug_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_bug_id' AND type='index'
+[0m
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" ORDER BY "bugs"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT  "comments".* FROM "comments" WHERE "comments"."bug_id" = ? LIMIT ?[0m  [["bug_id", 2], ["LIMIT", 11]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."bug_id" = ?[0m  [["bug_id", 2]]
+  [1m[36mComment Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "comments" WHERE "comments"."bug_id" = ? LIMIT ?[0m  [["bug_id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "comments" ("bug_id", "author", "body", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["bug_id", 2], ["author", "Bob"], ["body", "A comment"], ["created_at", "2018-02-27 16:34:20.003063"], ["updated_at", "2018-02-27 16:34:20.003063"]]
+  [1m[35m (35.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mComment Load (0.0ms)[0m  [1m[34mSELECT  "comments".* FROM "comments" WHERE "comments"."bug_id" = ? ORDER BY "comments"."id" ASC LIMIT ?[0m  [["bug_id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddStateToBugs (20180227163602)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (4.0ms)[0m  [1m[35mALTER TABLE "bugs" ADD "state" varchar[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180227163602"]]
+  [1m[35m (32.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_comments_on_bug_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_comments_on_bug_id' AND type='index'
+[0m
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 11:39:14 -0500
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (21.5ms)
+Completed 200 OK in 287ms (Views: 243.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/bugs/new" for 127.0.0.1 at 2018-02-27 11:39:18 -0500
+Processing by BugsController#new as HTML
+  Rendering bugs/new.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/new.html.erb within layouts/application (21.0ms)
+Completed 200 OK in 137ms (Views: 119.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/2/edit" for 127.0.0.1 at 2018-02-27 11:39:22 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (21.0ms)
+Completed 200 OK in 148ms (Views: 126.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 11:39:24 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.5ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 142ms (Views: 121.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 11:40:21 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 131ms (Views: 113.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/2" for 127.0.0.1 at 2018-02-27 11:40:26 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 88ms (Views: 74.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs/2/edit" for 127.0.0.1 at 2018-02-27 11:40:27 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (3.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (19.0ms)
+Completed 200 OK in 132ms (Views: 117.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 11:40:29 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 120ms (Views: 103.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 11:41:48 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 121ms (Views: 104.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/2/edit" for 127.0.0.1 at 2018-02-27 11:41:52 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (5.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (45.0ms)
+Completed 200 OK in 202ms (Views: 176.4ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/bugs/2" for 127.0.0.1 at 2018-02-27 11:41:56 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2bmDdelJmgX4dsFlHxZSAKbAlBywM9UKovMQ9/jqFxQ0WWVCKhpUHv1Cxa9DtCL1mJFUPvf9mPBPVQD3Bkhokg==", "bug"=>{"title"=>"test2", "author"=>"test2", "body"=>"test2", "state"=>"open"}, "commit"=>"Update Bug", "id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test2"], ["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/bugs/2
+Completed 302 Found in 15ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/2" for 127.0.0.1 at 2018-02-27 11:41:56 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 104ms (Views: 88.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 11:41:59 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 124ms (Views: 108.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/2/edit" for 127.0.0.1 at 2018-02-27 11:42:02 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 135ms (Views: 117.0ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/bugs/2" for 127.0.0.1 at 2018-02-27 11:42:07 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"YqClZPor2vDFNlBfq+Om4HIxNf7AxT984ZB5pbnzYUCPQENTOXgU68ACVJX3QdYVTGD13IcLcoYMNmmlR1Eexg==", "bug"=>{"title"=>"test2", "author"=>"test2", "body"=>"test2", "state"=>"Open"}, "commit"=>"Update Bug", "id"=>"2"}
+  [1m[36mBug Load (0.5ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test2"], ["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/bugs/2
+Completed 302 Found in 12ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs/2" for 127.0.0.1 at 2018-02-27 11:42:07 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 119ms (Views: 99.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/2/edit" for 127.0.0.1 at 2018-02-27 11:42:09 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.5ms)
+  Rendered bugs/edit.html.erb within layouts/application (25.5ms)
+Completed 200 OK in 193ms (Views: 173.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 11:44:59 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (31.0ms)
+Completed 200 OK in 169ms (Views: 146.4ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 11:44:59 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 119ms (Views: 103.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 11:44:59 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 130ms (Views: 112.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs/3/edit" for 127.0.0.1 at 2018-02-27 11:45:02 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (6.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (23.0ms)
+Completed 200 OK in 149ms (Views: 126.8ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-02-27 11:45:06 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wE4G0AIYa2JFzLkXJIud6H8FllxgwG1eg2DVBpZ64CJfty02c18PsYWzefXVSPatZk+bu0flQo7OCwcabw2AEA==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"test3", "state"=>"open"}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 128ms (Views: 114.8ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-02-27 11:45:14 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gZdmBkTKyP/zJap1EJjY00/JAI0u7XF/yK9Sqh45+e9PNargTyQq6PaJMoUnuuvdnJ6gRNW0kJnLfSdbr5aiqA==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"test3", "state"=>"open\r\n"}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 129ms (Views: 116.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 11:45:20 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 113ms (Views: 95.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/2/edit" for 127.0.0.1 at 2018-02-27 11:45:21 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (3.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 141ms (Views: 122.9ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/bugs/2" for 127.0.0.1 at 2018-02-27 11:45:25 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GIF+a32lCN8jupbKiTHLbLUEYKlbzBsajm9VRtEDay/1YZhcvvbGxCaOkgDVk7uZi1WgixwCVuBjyUVGL6EUqQ==", "bug"=>{"title"=>"test2", "author"=>"test2", "body"=>"test2", "state"=>"closed\r\n"}, "commit"=>"Update Bug", "id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test2"], ["id", 2], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (3.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (21.0ms)
+Completed 200 OK in 130ms (Views: 119.4ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/bugs/2" for 127.0.0.1 at 2018-02-27 11:45:30 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TxHQKIKdrM6PD8tg3oOHFQuftidHlC67NJUyAY84j0SBsxzOiXNO2YqjU5DpobQb2MgW7rzNz103R0fwPpfUAw==", "bug"=>{"title"=>"test2", "author"=>"test2", "body"=>"test2", "state"=>"open"}, "commit"=>"Update Bug", "id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test2"], ["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (19.5ms)
+Completed 200 OK in 136ms (Views: 124.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/2" for 127.0.0.1 at 2018-02-27 11:45:53 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (1.2ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 142ms (Views: 102.0ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/bugs/2/edit" for 127.0.0.1 at 2018-02-27 11:45:55 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (0.5ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 139ms (Views: 120.2ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/bugs/2" for 127.0.0.1 at 2018-02-27 11:45:58 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"QpAuGoRuKOMIYR3Lq+xJy7xIS2ndWcJ6w3CScpvXUIavcMgtRz3m+A1VGQH3Tjk+ghmLS5qXj4Au1oJyZXUvAA==", "bug"=>{"title"=>"test2", "author"=>"test2", "body"=>"test2", "state"=>"open\r\n"}, "commit"=>"Update Bug", "id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test2"], ["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (21.6ms)
+Completed 200 OK in 133ms (Views: 120.9ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/bugs/2" for 127.0.0.1 at 2018-02-27 11:49:23 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2ajHiJYedu2SpggUlbLAMLJ0w4JEHKldxcDi7eETkckXCgtunfCU+pcKkOSikPM+YSNjS79FSLvGEpccULzKjg==", "bug"=>{"title"=>"test2", "author"=>"test2", "body"=>"test2", "state"=>"open"}, "commit"=>"Update Bug", "id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test2"], ["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (3.9ms)
+  Rendered bugs/edit.html.erb within layouts/application (21.0ms)
+Completed 200 OK in 130ms (Views: 119.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 11:50:36 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.5ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (17.1ms)
+Completed 200 OK in 135ms (Views: 113.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/bugs/3/edit" for 127.0.0.1 at 2018-02-27 11:50:40 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (3.5ms)
+  Rendered bugs/edit.html.erb within layouts/application (21.1ms)
+Completed 200 OK in 138ms (Views: 118.0ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-02-27 11:50:45 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"FZGrmgP92nVPyfyXKxES+MpvtBdSUPd1yHh0JBnS0aqKaIB8crq+po+2PHXa0nm90yW58HV12KWFE6Y44KWxmA==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"test3", "state"=>"complete"}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (5.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 135ms (Views: 122.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 11:50:48 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 116ms (Views: 99.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs/new" for 127.0.0.1 at 2018-02-27 11:50:49 -0500
+Processing by BugsController#new as HTML
+  Rendering bugs/new.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (3.0ms)
+  Rendered bugs/new.html.erb within layouts/application (19.0ms)
+Completed 200 OK in 138ms (Views: 120.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/bugs" for 127.0.0.1 at 2018-02-27 11:50:55 -0500
+Processing by BugsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"MPG296tzc8HgB/m6v2h+jKEaSGNi+ZabtWcf8Pf1l4Ec3rkFYYv0kMdpHT7ehXVg7bwkAvyUFg3W0q8kJlT8Ng==", "bug"=>{"title"=>"test", "author"=>"test", "body"=>"test", "state"=>"open"}, "commit"=>"Create Bug"}
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? LIMIT ?[0m  [["title", "test"], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/new.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.2ms)
+  Rendered bugs/new.html.erb within layouts/application (19.2ms)
+Completed 200 OK in 122ms (Views: 114.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 11:50:58 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 115ms (Views: 98.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/3/edit" for 127.0.0.1 at 2018-02-27 12:25:34 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBug Load (3.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (20.5ms)
+  Rendered bugs/edit.html.erb within layouts/application (43.5ms)
+Completed 200 OK in 227ms (Views: 179.3ms | ActiveRecord: 3.0ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-02-27 12:25:38 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"c/+3uTIpIs8CydElSVGpIYv8iBlhfMv4hEplC0Zjpk3sBpxfQ25GHMK2Ece4ksJkkraF/kZZ5CjJIbcXvxTGfw==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"test3", "state"=>"test"}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (5.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (22.0ms)
+Completed 200 OK in 218ms (Views: 192.2ms | ActiveRecord: 1.5ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-02-27 12:25:51 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4hNc636wuRcYwXLl4loCNMZBWtRhs5PMFdU900841qIssZANdV5bAB1t6hXVeDE6FRb6HZrqcioWB0gi/peN5Q==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"test3", "state"=>"1"}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (21.5ms)
+Completed 200 OK in 147ms (Views: 134.5ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-02-27 12:25:54 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KJbibWj+XTwA0ramXNFD5Ogy1FyPdmiZmEqdZcbNHfvmNC6LYxC/KwV+LlZr83DqO2V0lXQviX+bmOiUd2JGvA==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"test3", "state"=>""}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 140ms (Views: 126.0ms | ActiveRecord: 1.5ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-02-27 12:25:56 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"7F2s2TxyXpJJDanlCJEpluXPh/SY1Z5TEsbgvPhLy0gi/2A/N5y8hUyhMRU/sxqYNpgnPWOMf7URFJVNSeSQDw==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"test3", "state"=>"2"}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (5.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 141ms (Views: 129.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 12:25:57 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 127ms (Views: 110.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 12:29:10 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (19.0ms)
+Completed 200 OK in 150ms (Views: 120.3ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/bugs/2/edit" for 127.0.0.1 at 2018-02-27 12:29:14 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 140ms (Views: 119.3ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/bugs/2" for 127.0.0.1 at 2018-02-27 12:29:20 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"PB92ztkoR99czQtnHjoGJlbgD05dDOBVlNnY7hpqgenR/5D5GnuJxFn5D61CmHbTaLHPbBrCra95f8ju5Mj+bw==", "bug"=>{"title"=>"test2", "author"=>"test2", "body"=>"10", "state"=>"open"}, "commit"=>"Update Bug", "id"=>"2"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test2"], ["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 138ms (Views: 124.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 12:29:23 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 122ms (Views: 104.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs/4/edit" for 127.0.0.1 at 2018-02-27 12:29:30 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (22.0ms)
+Completed 200 OK in 152ms (Views: 126.5ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/bugs/4" for 127.0.0.1 at 2018-02-27 12:29:34 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Vafjwf7FngV4zVJx39SqmUynAxJXg0BpcfN6a920NZDRug2koNOyQ29Kz5Kh8ioWecCU4x5id0MMLdhyIPLDtg==", "bug"=>{"title"=>"Bug From Console", "author"=>"", "body"=>"10", "state"=>""}, "commit"=>"Update Bug", "id"=>"4"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (1.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "Bug From Console"], ["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (18.0ms)
+Completed 200 OK in 112ms (Views: 100.8ms | ActiveRecord: 2.0ms)
+
+
+Started PATCH "/bugs/4" for 127.0.0.1 at 2018-02-27 12:29:41 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aw+JLgvi58FgG/JxwMhLUGkyhN9m7I+5gYvWEBRVutmlrUXIAAwF1mW3aoH36nheumUkFp21bl+CWaPhpfrhng==", "bug"=>{"title"=>"Bug From Console", "author"=>"", "body"=>"1", "state"=>""}, "commit"=>"Update Bug", "id"=>"4"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "Bug From Console"], ["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (5.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 127ms (Views: 115.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 12:29:42 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.5ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 113ms (Views: 95.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/bugs/2/edit" for 127.0.0.1 at 2018-02-27 12:31:33 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (22.0ms)
+Completed 200 OK in 148ms (Views: 128.4ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/bugs/2" for 127.0.0.1 at 2018-02-27 12:31:40 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"r66FEMiUbCODf3Z6Z6KUaxXw+vdJ/6VbDj1Rxc5lOkNCTmMnC8eiOIZLcrA7AOSeK6E61Q4x6KHjm0HFMMdFxQ==", "bug"=>{"title"=>"test2", "author"=>"test2", "body"=>"2", "state"=>""}, "commit"=>"Update Bug", "id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test2"], ["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (5.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (22.0ms)
+Completed 200 OK in 138ms (Views: 126.9ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/bugs/2" for 127.0.0.1 at 2018-02-27 12:31:45 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ALoCn7R66b1UBaWcZJiMWmqEL9D2CqmDYqe7K2L7O27OGM55v5QLqlGpPWxTur9UudOPGQ1TSGVhdc7a01RgKQ==", "bug"=>{"title"=>"test2", "author"=>"test2", "body"=>"2", "state"=>"open"}, "commit"=>"Update Bug", "id"=>"2"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test2"], ["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (5.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (22.0ms)
+Completed 200 OK in 135ms (Views: 123.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 12:31:48 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 123ms (Views: 104.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/3/edit" for 127.0.0.1 at 2018-02-27 12:31:51 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (5.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (23.0ms)
+Completed 200 OK in 156ms (Views: 136.2ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-02-27 12:31:54 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+jth2G7/d03oEKYxO2cUlih6U+e4TqWpObXyq7zgtjxlwko+H7gTnihvZtPKpH/TMTBeAJ9rinl03iC3RZfWDg==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"1", "state"=>""}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (22.0ms)
+Completed 200 OK in 134ms (Views: 122.5ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-02-27 12:31:58 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ES9TR5HgZ0tUExmybSn5Q2JEQk28extktLO4KWmhH3vfjZ+hmg6FXFG/gUJaC8pNsRPihEci+oK3Yc3Y2A5EPA==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"test3", "state"=>""}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (21.0ms)
+Completed 200 OK in 131ms (Views: 120.8ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-02-27 12:32:01 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"kmGniP+FjGgnB0v/bRzeNBf1zxL65Bak3dJIa0/wcX1cw2tu9GtufyKr0w9aPu06xKJv2wG990LeAD2a/l8qOg==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"1", "state"=>""}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Unpermitted parameter: :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.5ms)
+  Rendered bugs/edit.html.erb within layouts/application (22.0ms)
+Completed 200 OK in 130ms (Views: 117.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 12:32:03 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 121ms (Views: 102.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 12:32:48 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 121ms (Views: 104.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/2/edit" for 127.0.0.1 at 2018-02-27 12:32:51 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (5.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (26.0ms)
+Completed 200 OK in 167ms (Views: 150.3ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/bugs/2" for 127.0.0.1 at 2018-02-27 12:32:54 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"39a3S9hKhioBbIuT+k42Zg5oN8TtzCIiWNqtkGulLO4yNlF8GxlIMQRYj1mm7EaTMDn35qoCb9i1fL2QlQdTaA==", "bug"=>{"title"=>"test2", "author"=>"test2", "body"=>"test2", "priority"=>"1", "state"=>""}, "commit"=>"Update Bug", "id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Unpermitted parameters: :priority, :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test2"], ["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 131ms (Views: 120.7ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/bugs/2" for 127.0.0.1 at 2018-02-27 12:33:01 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Xn/6wrstV86Zj7YGk2FdopOw2h4ifRWsAptDuzPHQe+Q3TYksMO12ZwjLvakQ26sQOd619kk9EoBSTZKgmgaqA==", "bug"=>{"title"=>"test2", "author"=>"test2", "body"=>"test2", "priority"=>"10", "state"=>"open"}, "commit"=>"Update Bug", "id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Unpermitted parameters: :priority, :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test2"], ["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (22.1ms)
+Completed 200 OK in 131ms (Views: 121.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-02-27 12:33:06 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 140ms (Views: 114.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/3/edit" for 127.0.0.1 at 2018-02-27 12:33:08 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (3.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 151ms (Views: 133.8ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-02-27 12:33:12 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"NxazkEe7eWfzz4tEij4wjXCM4THlUDzDeL2CgYrDa5So75h2NvwdtDOwS6Z7/VvIacbs1sJ1ExM11lCdc7QLpg==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"test3", "priority"=>"3", "state"=>""}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Unpermitted parameters: :priority, :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (5.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (17.0ms)
+Completed 200 OK in 102ms (Views: 94.2ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-02-27 12:33:15 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Mv5a50ER1U2ITXRTd+VXi/m6coca3niuRfCC6q/6iUv8XJYBSv83Wo3h7KNAx2SFKu3STuGHmUhGIvcbHlXSDA==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"test3", "priority"=>"3", "state"=>""}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Unpermitted parameters: :priority, :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 134ms (Views: 121.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/bugs/3" for 127.0.0.1 at 2018-02-27 12:34:24 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 147ms (Views: 109.3ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/bugs/3/edit" for 127.0.0.1 at 2018-02-27 12:34:26 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (21.0ms)
+Completed 200 OK in 148ms (Views: 129.1ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-02-27 12:34:29 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zYy/YgvekA3q9AJPY/qzU/dV560aPCFtGr3I+fQyngtSdZSEepn03iqLwq2SOdgW7h/qSj0ZDr1X1hrlDUX+OQ==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"test3", "priority"=>"10", "state"=>""}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Unpermitted parameters: :priority, :state
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (6.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (21.0ms)
+Completed 200 OK in 131ms (Views: 119.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/3" for 127.0.0.1 at 2018-02-28 13:19:26 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 217ms (Views: 133.4ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/bugs/3/edit" for 127.0.0.1 at 2018-02-28 13:19:28 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (10.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (27.1ms)
+Completed 200 OK in 169ms (Views: 148.2ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-02-28 13:19:32 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"CGpS56Uir99h7Fwm21l3Cw/0oKi4OGhupHyX7IPfek+Xk3kB1GXLDKGTnMQqmhxOFr6tT58dR77pF0XweqgafQ==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"test3", "priority"=>"1", "state"=>""}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (6.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (23.0ms)
+Completed 200 OK in 151ms (Views: 133.9ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-02-28 13:19:38 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qEUHkWMIr1uhoPsSd7gt7hXcnMAV9UPL67QZLJWkWUtm58t3aOZNTKQMY+JAmh7gxos8Ce6soi3oZmzdJAsCDA==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"test3", "priority"=>"1", "state"=>"Open"}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (5.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (17.0ms)
+Completed 200 OK in 106ms (Views: 97.0ms | ActiveRecord: 2.0ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-02-28 13:19:40 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"c37lCwWRLxgQmmk8SdDpQEu5HyUazsVYNcwT9DtI61u93CntDn/NDxU28cx+8tpOmO6/7OGXJL42HmYFiuewHA==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"test3", "priority"=>"1", "state"=>"Open"}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (5.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (23.0ms)
+Completed 200 OK in 134ms (Views: 124.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/2" for 127.0.0.1 at 2018-02-28 13:36:26 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 159ms (Views: 139.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs/2/comments" for 127.0.0.1 at 2018-02-28 13:36:31 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/bugs/2/comments"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.2) lib/puma/configuration.rb:225:in `call'
+puma (3.11.2) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.2) lib/puma/server.rb:438:in `process_client'
+puma (3.11.2) lib/puma/server.rb:302:in `block in run'
+puma (3.11.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/bugs/3" for 127.0.0.1 at 2018-02-28 22:36:30 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBug Load (7.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (80.1ms)
+Completed 200 OK in 1487ms (Views: 1317.0ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-03-05 11:37:11 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (4.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (43.5ms)
+Completed 200 OK in 256ms (Views: 217.0ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-03-05 11:37:12 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.5ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 153ms (Views: 134.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-03-05 11:40:04 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.5ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 145ms (Views: 125.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-03-05 11:40:05 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 148ms (Views: 129.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-03-05 11:40:09 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 137ms (Views: 118.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-03-05 11:41:32 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 142ms (Views: 120.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-03-05 11:41:53 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 190ms (Views: 161.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs/2" for 127.0.0.1 at 2018-03-05 11:41:55 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 146ms (Views: 123.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-03-05 11:41:57 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 118ms (Views: 104.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs/5" for 127.0.0.1 at 2018-03-05 11:41:59 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mBug Load (0.5ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 140ms (Views: 119.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-03-05 11:42:01 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 149ms (Views: 130.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-03-05 11:42:19 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 133ms (Views: 115.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-03-05 11:43:22 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.5ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (8.6ms)
+Completed 200 OK in 149ms (Views: 128.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/bugs/2" for 127.0.0.1 at 2018-03-05 11:43:24 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (0.5ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 143ms (Views: 122.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-03-05 11:44:45 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 137ms (Views: 116.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs/2.json" for 127.0.0.1 at 2018-03-05 11:45:25 -0500
+Processing by BugsController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/show.json.jbuilder
+  Rendered bugs/_bug.json.jbuilder (2.0ms)
+  Rendered bugs/show.json.jbuilder (22.6ms)
+Completed 200 OK in 110ms (Views: 85.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs/2/comments.json" for 127.0.0.1 at 2018-03-05 11:45:34 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/bugs/2/comments.json"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.2) lib/puma/configuration.rb:225:in `call'
+puma (3.11.2) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.2) lib/puma/server.rb:438:in `process_client'
+puma (3.11.2) lib/puma/server.rb:302:in `block in run'
+puma (3.11.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/bugs/3/comments.json" for 127.0.0.1 at 2018-03-05 11:45:47 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/bugs/3/comments.json"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.2) lib/puma/configuration.rb:225:in `call'
+puma (3.11.2) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.2) lib/puma/server.rb:438:in `process_client'
+puma (3.11.2) lib/puma/server.rb:302:in `block in run'
+puma (3.11.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/bugs/2" for 127.0.0.1 at 2018-03-05 11:46:06 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 123ms (Views: 103.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs/2/comments.json" for 127.0.0.1 at 2018-03-05 11:46:11 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/bugs/2/comments.json"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.2) lib/puma/configuration.rb:225:in `call'
+puma (3.11.2) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.2) lib/puma/server.rb:438:in `process_client'
+puma (3.11.2) lib/puma/server.rb:302:in `block in run'
+puma (3.11.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/bugs/2/edit" for 127.0.0.1 at 2018-03-05 15:43:00 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (2.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (27.1ms)
+  Rendered bugs/edit.html.erb within layouts/application (57.0ms)
+Completed 200 OK in 266ms (Views: 211.7ms | ActiveRecord: 2.0ms)
+
+
+Started PATCH "/bugs/2" for 127.0.0.1 at 2018-03-05 15:43:04 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vrsN/5xDG0SR3rjNFADN8g+N8i1KLH/2xpCWlB8kgr9TW+vIXxDVX5TqvAdIor0HMdwyDw3iMgwrNoaU4Yb9OQ==", "bug"=>{"title"=>"test2", "author"=>"test2", "body"=>"test2", "priority"=>"10", "state"=>"open"}, "commit"=>"Update Bug", "id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test2"], ["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (3.0ms)[0m  [1m[33mUPDATE "bugs" SET "state" = ?, "updated_at" = ? WHERE "bugs"."id" = ?[0m  [["state", "open"], ["updated_at", "2018-03-05 20:43:04.418538"], ["id", 2]]
+  [1m[35m (35.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/bugs/2
+Completed 302 Found in 76ms (ActiveRecord: 39.7ms)
+
+
+Started GET "/bugs/2" for 127.0.0.1 at 2018-03-05 15:43:04 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 235ms (Views: 200.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-03-05 15:43:07 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.5ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 161ms (Views: 136.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/bugs/3/edit" for 127.0.0.1 at 2018-03-05 15:43:11 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBug Load (0.5ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (4.5ms)
+  Rendered bugs/edit.html.erb within layouts/application (22.0ms)
+Completed 200 OK in 155ms (Views: 134.1ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-03-05 15:43:17 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bG5S22jnyNxNDyrCvKkc7BsZhAELZs/OAHIROQ7lp//zl3k9GaCsD41w6iBNanepAlOJ5ixD4B5NGcMl95LHzQ==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"test3", "priority"=>"1", "state"=>"closed\r\n"}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (7.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (25.1ms)
+Completed 200 OK in 147ms (Views: 134.7ms | ActiveRecord: 2.0ms)
+
+
+Started PATCH "/bugs/3" for 127.0.0.1 at 2018-03-05 15:43:21 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GDT7+j5M4BOh9CMWp7m8MTB/zUyL8dbEAIchbXTfyDvWljccNaICBKRYu+aQm48/4yhthXCoNyIDVVScxXCTfA==", "bug"=>{"title"=>"test3", "author"=>"test3", "body"=>"test3", "priority"=>"1", "state"=>"closed"}, "commit"=>"Update Bug", "id"=>"3"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "test3"], ["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (2.0ms)[0m  [1m[33mUPDATE "bugs" SET "priority" = ?, "state" = ?, "updated_at" = ? WHERE "bugs"."id" = ?[0m  [["priority", 1], ["state", "closed"], ["updated_at", "2018-03-05 20:43:21.695699"], ["id", 3]]
+  [1m[35m (37.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/bugs/3
+Completed 302 Found in 54ms (ActiveRecord: 41.1ms)
+
+
+Started GET "/bugs/3" for 127.0.0.1 at 2018-03-05 15:43:21 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 129ms (Views: 109.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-03-05 15:43:23 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 155ms (Views: 135.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs.json" for 127.0.0.1 at 2018-03-05 16:01:46 -0500
+Processing by BugsController#index as JSON
+  Rendering bugs/index.json.jbuilder
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/_bug.json.jbuilder (7.0ms)
+  Rendered bugs/_bug.json.jbuilder (0.0ms)
+  Rendered bugs/_bug.json.jbuilder (1.0ms)
+  Rendered bugs/_bug.json.jbuilder (0.5ms)
+  Rendered bugs/_bug.json.jbuilder (0.5ms)
+  Rendered bugs/_bug.json.jbuilder (0.5ms)
+  Rendered bugs/_bug.json.jbuilder (0.0ms)
+  Rendered bugs/index.json.jbuilder (63.1ms)
+Completed 200 OK in 144ms (Views: 123.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs/2" for 127.0.0.1 at 2018-03-06 08:32:15 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mBug Load (2.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 227ms (Views: 178.9ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-03-06 08:32:17 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (15.5ms)
+Completed 200 OK in 161ms (Views: 142.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/bugs/4" for 127.0.0.1 at 2018-03-06 08:32:18 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mBug Load (0.5ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 168ms (Views: 145.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/bugs/4/edit" for 127.0.0.1 at 2018-03-06 08:32:20 -0500
+Processing by BugsController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering bugs/edit.html.erb within layouts/application
+  Rendered bugs/_form.html.erb (15.0ms)
+  Rendered bugs/edit.html.erb within layouts/application (40.0ms)
+Completed 200 OK in 271ms (Views: 248.8ms | ActiveRecord: 1.0ms)
+
+
+Started PATCH "/bugs/4" for 127.0.0.1 at 2018-03-06 08:32:32 -0500
+Processing by BugsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9q2DM2lQmcjNH7+znCnCA0J647N44E2xedHwfP+LmGNysG1WN0a1jtqYIlDiD0KMdx10QjEBepsED1JlAs1uRQ==", "bug"=>{"title"=>"Bug From Console", "author"=>"Drew", "body"=>"Bug from console", "priority"=>"2", "state"=>"closed"}, "commit"=>"Update Bug", "id"=>"4"}
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBug Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "bugs" WHERE "bugs"."title" = ? AND ("bugs"."id" != ?) LIMIT ?[0m  [["title", "Bug From Console"], ["id", 4], ["LIMIT", 1]]
+  [1m[35mSQL (3.0ms)[0m  [1m[33mUPDATE "bugs" SET "author" = ?, "body" = ?, "priority" = ?, "state" = ?, "updated_at" = ? WHERE "bugs"."id" = ?[0m  [["author", "Drew"], ["body", "Bug from console"], ["priority", 2], ["state", "closed"], ["updated_at", "2018-03-06 13:32:32.189142"], ["id", 4]]
+  [1m[35m (34.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/bugs/4
+Completed 302 Found in 54ms (ActiveRecord: 39.0ms)
+
+
+Started GET "/bugs/4" for 127.0.0.1 at 2018-03-06 08:32:32 -0500
+Processing by BugsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mBug Load (0.0ms)[0m  [1m[34mSELECT  "bugs".* FROM "bugs" WHERE "bugs"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering bugs/show.html.erb within layouts/application
+  Rendered bugs/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 111ms (Views: 96.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/bugs" for 127.0.0.1 at 2018-03-06 08:32:34 -0500
+Processing by BugsController#index as HTML
+  Rendering bugs/index.html.erb within layouts/application
+  [1m[36mBug Load (1.0ms)[0m  [1m[34mSELECT "bugs".* FROM "bugs"[0m
+  Rendered bugs/index.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 138ms (Views: 118.7ms | ActiveRecord: 1.0ms)
+
+
